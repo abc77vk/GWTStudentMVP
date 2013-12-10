@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel ui:field="panel">
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Login"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="inputLogin"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Password"/>
+				</g:customCell>
+				<g:customCell>
+					<g:PasswordTextBox ui:field="inputPassword"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Name"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="inputName"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Age"/>
+				</g:customCell>
+				<g:customCell>
+					<g:ListBox ui:field="ageComboBox" selectedIndex="1"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Button ui:field="okButton" text="Accepte"/>
+				</g:customCell>
+				<g:customCell>
+					<g:Button text="Back to login" ui:field="noButton"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+		<g:Label ui:field="output"/>
+	</g:HTMLPanel>
+</ui:UiBinder> 
