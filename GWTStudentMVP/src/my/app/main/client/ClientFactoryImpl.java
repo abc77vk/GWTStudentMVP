@@ -14,8 +14,8 @@
  *******************************************************************************/
 package my.app.main.client;
 
-import my.app.main.client.ui.SampleView;
-import my.app.main.client.ui.SampleViewImpl;
+import my.app.main.client.ui.MainPageView;
+import my.app.main.client.ui.MainPageViewImpl;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -28,7 +28,7 @@ public class ClientFactoryImpl implements ClientFactory {
   
 	private static final EventBus eventBus = new SimpleEventBus();
 	private static final PlaceController placeController = new PlaceController(eventBus);
-	private static final SampleView view = new SampleViewImpl();
+	private static final MainPageView view = new MainPageViewImpl();
 
 	@Override
 	public EventBus getEventBus() {
@@ -41,7 +41,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
 	@Override
-	public SampleView getSampleView() {
+	public MainPageView getSampleView() {
 		return view;
 	}
 

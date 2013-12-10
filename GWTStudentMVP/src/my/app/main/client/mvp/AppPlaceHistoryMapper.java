@@ -14,7 +14,7 @@
  *******************************************************************************/
 package my.app.main.client.mvp;
 
-import my.app.main.client.place.SamplePlace;
+import my.app.main.client.place.MainPagePlace;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
@@ -24,6 +24,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * be aware of. This is done via the @WithTokenizers annotation or by extending 
  * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
  */
-@WithTokenizers({ SamplePlace.Tokenizer.class })
+@WithTokenizers({ MainPagePlace.Tokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

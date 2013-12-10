@@ -15,8 +15,8 @@
 package my.app.main.client.mvp;
 
 import my.app.main.client.ClientFactory;
-import my.app.main.client.activity.SampleActivity;
-import my.app.main.client.place.SamplePlace;
+import my.app.main.client.activity.MainPageActivity;
+import my.app.main.client.place.MainPagePlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -39,8 +39,8 @@ public class AppActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 	  
-		if (place instanceof SamplePlace)
-			return new SampleActivity((SamplePlace) place, clientFactory);
+		if (place instanceof MainPagePlace)
+			return new MainPageActivity((MainPagePlace) place, clientFactory);
 
 		return null;
 	}

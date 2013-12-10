@@ -23,14 +23,14 @@ import com.google.gwt.place.shared.PlaceTokenizer;
  * {@link PlaceHistoryHandler} automatically updates the browser URL corresponding to each 
  * {@link Place} in your app.
  */
-public class SamplePlace extends Place {
+public class MainPagePlace extends Place {
   
 	/**
 	 * Sample property (stores token). 
 	 */
 	private String name;
 
-	public SamplePlace(String token) {
+	public MainPagePlace(String token) {
 		this.name = token;
 	}
 
@@ -41,16 +41,16 @@ public class SamplePlace extends Place {
 	/**
 	 * PlaceTokenizer knows how to serialize the Place's state to a URL token.
 	 */
-	public static class Tokenizer implements PlaceTokenizer<SamplePlace> {
+	public static class Tokenizer implements PlaceTokenizer<MainPagePlace> {
 
 		@Override
-		public String getToken(SamplePlace place) {
+		public String getToken(MainPagePlace place) {
 			return place.getName();
 		}
 
 		@Override
-		public SamplePlace getPlace(String token) {
-			return new SamplePlace(token);
+		public MainPagePlace getPlace(String token) {
+			return new MainPagePlace(token);
 		}
 
 	}

@@ -15,8 +15,8 @@
 package my.app.main.client.activity;
 
 import my.app.main.client.ClientFactory;
-import my.app.main.client.place.SamplePlace;
-import my.app.main.client.ui.SampleView;
+import my.app.main.client.place.MainPagePlace;
+import my.app.main.client.ui.MainPageView;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -26,7 +26,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.
  */
-public class SampleActivity extends AbstractActivity implements SampleView.Presenter {
+public class MainPageActivity extends AbstractActivity implements MainPageView.Presenter {
 	/**
 	 * Used to obtain views, eventBus, placeController.
 	 * Alternatively, could be injected via GIN.
@@ -38,26 +38,28 @@ public class SampleActivity extends AbstractActivity implements SampleView.Prese
 	 */
 	private String name;
 
-	public SampleActivity(SamplePlace place, ClientFactory clientFactory) {
+	public MainPageActivity(MainPagePlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		SampleView view = clientFactory.getSampleView();
+		MainPageView view = clientFactory.getSampleView();
 		view.setName(name);
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
+	
+	
 
 	@Override
 	public String mayStop() {
-		return "Please hold on. This activity is stopping.";
+		return null;
 	}
 
 	/**
-	 * @see SampleView.Presenter#goTo(Place)
+	 * @see MainPageView.Presenter#goTo(Place)
 	 */
 	public void goTo(Place place) {
 		clientFactory.getPlaceController().goTo(place);

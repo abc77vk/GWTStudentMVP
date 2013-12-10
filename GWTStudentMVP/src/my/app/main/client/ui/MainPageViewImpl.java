@@ -23,39 +23,34 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
 /**
- * Sample implementation of {@link SampleView}.
+ * Sample implementation of {@link MainPageView}.
  */
-public class SampleViewImpl extends Composite implements SampleView {
+public class MainPageViewImpl extends Composite implements MainPageView {
 
-	interface Binder extends UiBinder<Widget, SampleViewImpl> {
+	interface Binder extends UiBinder<Widget, MainPageViewImpl> {
 	}
 	
 	private static final Binder binder = GWT.create(Binder.class);
+	@UiField HTMLPanel content;
 
 	private Presenter listener;
-	@UiField
-	Button button;
 
-	public SampleViewImpl() {
+	public MainPageViewImpl() {
 		initWidget(binder.createAndBindUi(this));
 	}
 
-	@Override
-	public void setName(String name) {
-		button.setHTML(name);
-	}
 
 	@Override
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
 	}
 
-	@UiHandler("button")
-	void onButtonClick(ClickEvent event) {
-		Place newPlace = null;
-		// TODO
-		listener.goTo(newPlace);
+
+	@Override
+	public void setName(String helloName) {
+		
 	}
 }

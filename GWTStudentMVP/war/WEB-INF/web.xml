@@ -27,6 +27,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>RegistrationService</servlet-name>
 		<url-pattern>/my.app.login.LoginViewer/RegistrationService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetCurrentUser</servlet-name>
+		<servlet-class>my.app.main.server.service.GetCurrentUserImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetCurrentUser</servlet-name>
+		<url-pattern>/my.app.main.MainPage/GetCurrentUser</url-pattern>
+	</servlet-mapping>
 	
 	
 </web-app>

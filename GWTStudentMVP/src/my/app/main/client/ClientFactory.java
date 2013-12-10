@@ -14,7 +14,7 @@
  *******************************************************************************/
 package my.app.main.client;
 
-import my.app.main.client.ui.SampleView;
+import my.app.main.client.ui.MainPageView;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
@@ -29,5 +29,5 @@ public interface ClientFactory {
 	EventBus getEventBus();
 
 	PlaceController getPlaceController();
-	public SampleView getSampleView();
+	public MainPageView getSampleView();
 }

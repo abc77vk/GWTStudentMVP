@@ -21,7 +21,7 @@ import com.google.gwt.user.client.ui.IsWidget;
  * View base interface.
  * Extends IsWidget so a view impl can easily provide its container widget.
  */
-public interface SampleView extends IsWidget {
+public interface MainPageView extends IsWidget {
   
 	void setName(String helloName);
 
