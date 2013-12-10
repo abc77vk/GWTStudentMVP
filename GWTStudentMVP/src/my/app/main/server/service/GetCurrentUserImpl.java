@@ -12,19 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package my.app.main.client.mvp;
+package my.app.main.server.service;
 
-import my.app.main.client.place.AddStudentPlace;
-import my.app.main.client.place.MainPagePlace;
+import my.app.main.client.entity.StudentInfo;
+import my.app.main.client.service.GetCurrentUser;
+import my.app.main.server.entity.Student;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-/**
- * PlaceHistoryMapper interface is used to attach all places which the PlaceHistoryHandler should 
- * be aware of. This is done via the @WithTokenizers annotation or by extending 
- * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
- */
-@WithTokenizers({ MainPagePlace.Tokenizer.class, AddStudentPlace.Tokenizer.class })
-public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+public class GetCurrentUserImpl extends RemoteServiceServlet implements GetCurrentUser {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public StudentInfo getStudentInfo() {
+		Student student = (Student) this.getThreadLocalRequest().getSession().getAttribute("user");
+		if (student == null) return null;
+		return student.getStudentInfo();
+	}
 }

@@ -12,19 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package my.app.main.client.mvp;
+package my.app.main.client.ui;
 
-import my.app.main.client.place.AddStudentPlace;
-import my.app.main.client.place.MainPagePlace;
-
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.ui.IsWidget;
 
 /**
- * PlaceHistoryMapper interface is used to attach all places which the PlaceHistoryHandler should 
- * be aware of. This is done via the @WithTokenizers annotation or by extending 
- * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
+ * View base interface.
+ * Extends IsWidget so a view impl can easily provide its container widget.
  */
-@WithTokenizers({ MainPagePlace.Tokenizer.class, AddStudentPlace.Tokenizer.class })
-public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+public interface AddStudent extends IsWidget {
+  
+	void setName(String helloName);
+
+	void setPresenter(Presenter listener);
+
+	public interface Presenter {
+		/**
+		 * Navigate to a new Place in the browser.
+		 */
+		void goTo(Place place);
+	}
 }

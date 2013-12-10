@@ -14,6 +14,8 @@
  *******************************************************************************/
 package my.app.main.client.ui;
 
+import my.app.main.client.entity.StudentInfo;
+
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -26,6 +28,8 @@ public interface MainPageView extends IsWidget {
 	void setName(String helloName);
 
 	void setPresenter(Presenter listener);
+	
+	void setUserInfo(StudentInfo info);
 
 	public interface Presenter {
 		/**

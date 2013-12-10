@@ -14,65 +14,69 @@
  *******************************************************************************/
 package my.app.main.client.ui;
 
-import my.app.main.client.entity.StudentInfo;
-import my.app.main.client.place.AddStudentPlace;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Sample implementation of {@link MainPageView}.
+ * Sample implementation of {@link AddStudent}.
  */
-public class MainPageViewImpl extends Composite implements MainPageView {
+public class AddStudentImpl extends Composite implements AddStudent {
 
-	interface Binder extends UiBinder<Widget, MainPageViewImpl> {
+	interface Binder extends UiBinder<Widget, AddStudentImpl> {
 	}
-	
+
 	private static final Binder binder = GWT.create(Binder.class);
-	@UiField HTMLPanel content;
-	@UiField Label output;
-	@UiField Anchor anchor;
+	@UiField
+	TextBox nameInput;
+	@UiField
+	IntegerBox markInput;
+	@UiField
+	Label output;
+	@UiField
+	Button button;
 
 	private Presenter listener;
 
-	public MainPageViewImpl() {
+	public AddStudentImpl() {
 		initWidget(binder.createAndBindUi(this));
 	}
 
+	@Override
+	public void setName(String name) {
+	}
 
 	@Override
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
 	}
 
+	@UiHandler("button")
+	void onButtonClick(ClickEvent event) {
+		String name = nameInput.getText();
+		String mark = markInput.getText();
 
-	@Override
-	public void setName(String helloName) {
-		
-	}
-
-
-	@Override
-	public void setUserInfo(StudentInfo info) {
-		if (info == null) {
-			output.setText("User not found!");
-			return;
+		if (name.isEmpty() || mark.isEmpty()) {
+			output.setText("Please, fill all filds.");
 		}
-		output.setText("Name: " + info.getName() + " age: " + info.getAge());
-	}
-	@UiHandler("anchor")
-	void onAnchorClick(ClickEvent event) {
-		Window.alert("TEST");
-		listener.goTo(new AddStudentPlace("add_new_mark"));
+
+		// if(!mark.matches("^(100)|(\\d{1,2})$")) {
+		// output.setText("Mark is integer number in range [0,100]");
+		// }
+
+
+//			Integer intMark = Integer.parseInt(mark);
+//			if (intMark < 0 || intMark > 100) {
+//				output.setText("Mark is integer number in range [0,100]");
+//			}
+		
 	}
 }

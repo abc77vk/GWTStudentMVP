@@ -14,6 +14,8 @@
  *******************************************************************************/
 package my.app.main.client;
 
+import my.app.main.client.ui.AddStudent;
+import my.app.main.client.ui.AddStudentImpl;
 import my.app.main.client.ui.MainPageView;
 import my.app.main.client.ui.MainPageViewImpl;
 
@@ -29,6 +31,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final EventBus eventBus = new SimpleEventBus();
 	private static final PlaceController placeController = new PlaceController(eventBus);
 	private static final MainPageView view = new MainPageViewImpl();
+	private static final AddStudent ADD_STUDENT_VIEW = new AddStudentImpl();
+		
+	
 
 	@Override
 	public EventBus getEventBus() {
@@ -43,6 +48,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public MainPageView getSampleView() {
 		return view;
+	}
+
+	@Override
+	public AddStudent getAddStudent() {
+		return ADD_STUDENT_VIEW;
 	}
 
 }

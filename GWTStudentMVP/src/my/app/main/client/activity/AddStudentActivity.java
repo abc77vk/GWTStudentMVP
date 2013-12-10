@@ -15,23 +15,18 @@
 package my.app.main.client.activity;
 
 import my.app.main.client.ClientFactory;
-import my.app.main.client.entity.StudentInfo;
-import my.app.main.client.place.MainPagePlace;
-import my.app.main.client.service.GetCurrentUser;
-import my.app.main.client.ui.MainPageView;
+import my.app.main.client.place.AddStudentPlace;
+import my.app.main.client.ui.AddStudent;
 
 import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.
  */
-public class MainPageActivity extends AbstractActivity implements MainPageView.Presenter {
+public class AddStudentActivity extends AbstractActivity implements AddStudent.Presenter {
 	/**
 	 * Used to obtain views, eventBus, placeController.
 	 * Alternatively, could be injected via GIN.
@@ -43,43 +38,26 @@ public class MainPageActivity extends AbstractActivity implements MainPageView.P
 	 */
 	private String name;
 
-	public MainPageActivity(MainPagePlace place, ClientFactory clientFactory) {
+	public AddStudentActivity(AddStudentPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		final MainPageView view = clientFactory.getSampleView();
+		AddStudent view = clientFactory.getAddStudent();
 		view.setName(name);
-
-		GetCurrentUser.Util.getInstance().getStudentInfo(new AsyncCallback<StudentInfo>() {
-			
-			@Override
-			public void onSuccess(StudentInfo result) {
-				view.setUserInfo(result);
-				
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());	
-			}
-		});
-		
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
-	
-	
 
 	@Override
 	public String mayStop() {
-		return null;
+		return "Please hold on. This activity is stopping.";
 	}
 
 	/**
-	 * @see MainPageView.Presenter#goTo(Place)
+	 * @see AddStudent.Presenter#goTo(Place)
 	 */
 	public void goTo(Place place) {
 		clientFactory.getPlaceController().goTo(place);

@@ -16,7 +16,6 @@ package my.app.main.client;
 
 import my.app.main.client.mvp.AppActivityMapper;
 import my.app.main.client.mvp.AppPlaceHistoryMapper;
-import my.app.main.client.ClientFactory;
 import my.app.main.client.place.MainPagePlace;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -33,7 +32,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 public class MainPage implements EntryPoint {
   
 	private SimplePanel appWidget = new SimplePanel();
-	private Place defaultPlace = new MainPagePlace("main");
+	private Place defaultPlace = new MainPagePlace("start");
 	
 	public void onModuleLoad() {
 		// Create ClientFactory using deferred binding so we can replace with 

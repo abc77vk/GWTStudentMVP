@@ -18,6 +18,7 @@ import my.app.main.client.ui.MainPageView;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import my.app.main.client.ui.AddStudent;
 
 /**
  * ClientFactory helpful to use a factory or dependency injection framework like GIN to obtain 
@@ -30,4 +31,5 @@ public interface ClientFactory {
 
 	PlaceController getPlaceController();
 	public MainPageView getSampleView();
+	public AddStudent getAddStudent();
 }

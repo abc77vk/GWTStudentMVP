@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<ui:style>
+		.panel {
+			background-color: white;
+		}
+	</ui:style>
+
+	<g:FlowPanel styleName="{style.panel}">
+		<g:Grid cellPadding="5" cellSpacing="5">
+			<g:row>
+				<g:customCell>
+					<g:Label text="Subject Name"/>
+				</g:customCell>
+				<g:customCell>
+					<g:TextBox ui:field="nameInput"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label text="Mark"/>
+				</g:customCell>
+				<g:customCell>
+					<g:IntegerBox ui:field="markInput"/>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Button ui:field="button">Add Mark</g:Button>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:Label ui:field="output"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+	</g:FlowPanel>
+</ui:UiBinder>

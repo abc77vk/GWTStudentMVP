@@ -12,19 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package my.app.main.client.mvp;
+package my.app.main.client.service;
 
-import my.app.main.client.place.AddStudentPlace;
-import my.app.main.client.place.MainPagePlace;
+import my.app.main.client.entity.StudentInfo;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-/**
- * PlaceHistoryMapper interface is used to attach all places which the PlaceHistoryHandler should 
- * be aware of. This is done via the @WithTokenizers annotation or by extending 
- * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
- */
-@WithTokenizers({ MainPagePlace.Tokenizer.class, AddStudentPlace.Tokenizer.class })
-public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+@RemoteServiceRelativePath("GetCurrentUser")
+public interface GetCurrentUser extends RemoteService {
+
+	StudentInfo getStudentInfo();
+	
+	public static class Util {
+		private static GetCurrentUserAsync instance;
+		public static GetCurrentUserAsync getInstance(){
+			if (instance == null) {
+				instance = GWT.create(GetCurrentUser.class);
+			}
+			return instance;
+		}
+	}
 }

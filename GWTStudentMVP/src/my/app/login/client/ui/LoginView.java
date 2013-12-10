@@ -65,7 +65,7 @@ public class LoginView extends Composite {
 			public void onSuccess(Boolean result) {
 				if (result) {
 					output.setText("Login ok!");
-					Window.Location.replace("/MainPage.html");
+					Window.Location.replace("/MainPage.html?gwt.codesvr=127.0.0.1:9997");
 				} else {
 					output.setText("User not found!!!");
 				}

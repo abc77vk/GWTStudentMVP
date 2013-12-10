@@ -15,7 +15,9 @@
 package my.app.main.client.mvp;
 
 import my.app.main.client.ClientFactory;
+import my.app.main.client.activity.AddStudentActivity;
 import my.app.main.client.activity.MainPageActivity;
+import my.app.main.client.place.AddStudentPlace;
 import my.app.main.client.place.MainPagePlace;
 
 import com.google.gwt.activity.shared.Activity;
@@ -41,6 +43,7 @@ public class AppActivityMapper implements ActivityMapper {
 	  
 		if (place instanceof MainPagePlace)
 			return new MainPageActivity((MainPagePlace) place, clientFactory);
+		else if (place instanceof AddStudentPlace) return new AddStudentActivity((AddStudentPlace) place, clientFactory);
 
 		return null;
 	}

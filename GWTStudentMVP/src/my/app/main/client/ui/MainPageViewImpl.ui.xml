@@ -11,16 +11,18 @@
 	</ui:style>
 
 	<g:HTMLPanel styleName="{style.panel}">
-		<g:Grid>
+		<g:Grid cellPadding="10" cellSpacing="10">
 			<g:row>
 				<g:customCell>
-					<g:VerticalPanel styleName="{style.menu}">
-						<g:Hyperlink text="Show all Mark" targetHistoryToken="marks"/>
-						<g:Hyperlink text="Add new Mark" targetHistoryToken="newmark"/>
+					<g:VerticalPanel styleName="{style.menu}" spacing="20">
+						<g:Anchor text="Show all Mark" ui:field="anchor"/>
+						<g:Anchor text="Add new Mark"/>
 					</g:VerticalPanel>
 				</g:customCell>
 				<g:customCell>
-					<g:HTMLPanel ui:field="content"/>
+					<g:HTMLPanel ui:field="content">
+						<g:Label text="New Label" ui:field="output"/>
+					</g:HTMLPanel>
 				</g:customCell>
 			</g:row>
 		</g:Grid>
