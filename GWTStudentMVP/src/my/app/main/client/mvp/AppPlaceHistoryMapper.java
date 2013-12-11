@@ -25,6 +25,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * be aware of. This is done via the @WithTokenizers annotation or by extending 
  * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
  */
-@WithTokenizers({ MainPagePlace.Tokenizer.class, AddStudentPlace.Tokenizer.class })
+@WithTokenizers({ MainPagePlace.Tokenizer.class, AddStudentPlace.Tokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

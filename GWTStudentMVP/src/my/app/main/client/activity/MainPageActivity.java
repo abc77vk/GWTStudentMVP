@@ -53,30 +53,13 @@ public class MainPageActivity extends AbstractActivity implements MainPageView.P
 		final MainPageView view = clientFactory.getSampleView();
 		view.setName(name);
 
-		GetCurrentUser.Util.getInstance().getStudentInfo(new AsyncCallback<StudentInfo>() {
-			
-			@Override
-			public void onSuccess(StudentInfo result) {
-				view.setUserInfo(result);
-				
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());	
-			}
-		});
+		
 		
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
 	
 	
-
-	@Override
-	public String mayStop() {
-		return null;
-	}
 
 	/**
 	 * @see MainPageView.Presenter#goTo(Place)

@@ -32,7 +32,7 @@ public class AppActivityMapper implements ActivityMapper {
 	/**
 	 * Provided for {@link Activitie}s.
 	 */
-	private ClientFactory clientFactory;
+	protected ClientFactory clientFactory;
 
 	public AppActivityMapper(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;

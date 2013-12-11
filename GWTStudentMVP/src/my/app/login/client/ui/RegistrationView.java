@@ -62,6 +62,11 @@ public class RegistrationView extends Composite {
 		String login = inputLogin.getText();
 		String password = inputPassword.getText();
 		String name = inputName.getText();
+		
+		if(login.isEmpty() || password.isEmpty() || name.isEmpty()) {
+			output.setText("You must fill all fields");
+		}
+		
 		int selectedItemNumber = ageComboBox.getSelectedIndex();
 		Integer age = Integer.parseInt(ageComboBox.getItemText(selectedItemNumber));
 		

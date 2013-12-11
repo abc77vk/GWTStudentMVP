@@ -15,6 +15,7 @@
 package my.app.main.client.service;
 
 import my.app.main.client.entity.StudentInfo;
+import my.app.main.server.entity.Mark;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -24,6 +25,9 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface GetCurrentUser extends RemoteService {
 
 	StudentInfo getStudentInfo();
+	void logout();
+	
+	void addMark(String name,int age);
 	
 	public static class Util {
 		private static GetCurrentUserAsync instance;

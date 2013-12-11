@@ -15,21 +15,25 @@
 package my.app.main.client.activity;
 
 import my.app.main.client.ClientFactory;
-import my.app.main.client.place.AddStudentPlace;
-import my.app.main.client.ui.AddStudent;
+import my.app.main.client.entity.StudentInfo;
+import my.app.main.client.service.GetCurrentUser;
+import my.app.main.client.ui.LeftMenu;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
- * Activities are started and stopped by an ActivityManager associated with a container Widget.
+ * Activities are started and stopped by an ActivityManager associated with a
+ * container Widget.
  */
-public class AddStudentActivity extends AbstractActivity implements AddStudent.Presenter {
+public class LeftMenuActivity extends AbstractActivity implements LeftMenu.Presenter {
 	/**
-	 * Used to obtain views, eventBus, placeController.
-	 * Alternatively, could be injected via GIN.
+	 * Used to obtain views, eventBus, placeController. Alternatively, could be
+	 * injected via GIN.
 	 */
 	private ClientFactory clientFactory;
 
@@ -38,22 +42,35 @@ public class AddStudentActivity extends AbstractActivity implements AddStudent.P
 	 */
 	private String name;
 
-	public AddStudentActivity(AddStudentPlace place, ClientFactory clientFactory) {
-		this.name = place.getName();
+	public LeftMenuActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		AddStudent view = clientFactory.getAddStudent();
+		final LeftMenu view = clientFactory.getLeftMenu();
 		view.setName(name);
+
+		GetCurrentUser.Util.getInstance().getStudentInfo(new AsyncCallback<StudentInfo>() {
+
+			@Override
+			public void onSuccess(StudentInfo result) {
+				view.setInfo(result);
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+			}
+		});
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
 
-	
+
+
 	/**
-	 * @see AddStudent.Presenter#goTo(Place)
+	 * @see LeftMenu.Presenter#goTo(Place)
 	 */
 	public void goTo(Place place) {
 		clientFactory.getPlaceController().goTo(place);

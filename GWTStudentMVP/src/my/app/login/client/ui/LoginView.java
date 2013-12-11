@@ -55,7 +55,7 @@ public class LoginView extends Composite {
 		String login = loginInput.getText();
 		String password = passwordInput.getText();
 		if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
-			output.setText("Please, fill all filds.");
+			output.setText("Please, fill all fields.");
 			return;
 		}
 

@@ -12,28 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package my.app.main.client;
+package my.app.main.client.ui;
 
-import my.app.main.client.ui.MainPageView;
-
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.PlaceController;
-import my.app.main.client.ui.AddStudent;
-import my.app.main.client.ui.LeftMenu;
-import my.app.main.client.ui.ShowMarks;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.ui.IsWidget;
 
 /**
- * ClientFactory helpful to use a factory or dependency injection framework like GIN to obtain 
- * references to objects needed throughout your application like the {@link EventBus},
- * {@link PlaceController} and views.
+ * View base interface.
+ * Extends IsWidget so a view impl can easily provide its container widget.
  */
-public interface ClientFactory {
+public interface ShowMarks extends IsWidget {
+  
+	void setName(String helloName);
 
-	EventBus getEventBus();
+	void setPresenter(Presenter listener);
 
-	PlaceController getPlaceController();
-	public MainPageView getSampleView();
-	public AddStudent getAddStudent();
-	public LeftMenu getLeftMenu();
-	public ShowMarks getShowMarks();
+	public interface Presenter {
+		/**
+		 * Navigate to a new Place in the browser.
+		 */
+		void goTo(Place place);
+	}
 }

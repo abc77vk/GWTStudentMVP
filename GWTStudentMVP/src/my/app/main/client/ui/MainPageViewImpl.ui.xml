@@ -6,25 +6,41 @@
 		.panel {
 			background-color: ivory;
 		}
+		
 		.menu {
+			
 		}
 	</ui:style>
 
 	<g:HTMLPanel styleName="{style.panel}">
-		<g:Grid cellPadding="10" cellSpacing="10">
-			<g:row>
-				<g:customCell>
-					<g:VerticalPanel styleName="{style.menu}" spacing="20">
-						<g:Anchor text="Show all Mark" ui:field="anchor"/>
-						<g:Anchor text="Add new Mark"/>
-					</g:VerticalPanel>
-				</g:customCell>
-				<g:customCell>
-					<g:HTMLPanel ui:field="content">
-						<g:Label text="New Label" ui:field="output"/>
-					</g:HTMLPanel>
-				</g:customCell>
-			</g:row>
-		</g:Grid>
+		<h2>Welcome</h2>
+		<g:Label horizontalAlignment="ALIGN_CENTER" ui:field="outLable" />
+		<p>
+			<img src="images/univer-old.jpg" class="imgleft" style="max-width: 300px" />
+		</p>
+
+		<p>V.N. Karazin Kharkiv National University is one of the oldest
+			universities in Eastern Europe. It was founded
+			in November 1804, on the initiative of the prominent educator V.N.
+			Karazin and in accordance with the charter of
+			Tsar Alexander I.</p>
+
+		<p>The opening ceremony was held on January 29, 1805. The University
+			made an important contribution to the
+			Ukrainian national renaissance of the XIX-XXth centuries. It gave a powerful
+			impetus to the emergence of Kharkiv as
+			a major scientific and cultural center and an academic hub of Ukraine.
+			Today the University justly rates among the
+			best Ukrainian classical universities and is known in many countries.</p>
+
+		<p>The history of Kharkiv National University is part and parcel of
+			the intellectual, cultural and spiritual
+			history of Ukraine. The names of many world famous researchers, scholars and
+			educators are associated with Kharkiv
+			University, among them are P. Hulak-Artemovskyi, O. Lyapunov, M. Kostomarov, M.
+			Barabashov, M. Beketov, D. Bahaliy,
+			A. Krasnov, M. Ostrohradskyi, V. Steklov, O. Potebnya, O. Pohorelov and
+			many others.</p>
+
 	</g:HTMLPanel>
 </ui:UiBinder>

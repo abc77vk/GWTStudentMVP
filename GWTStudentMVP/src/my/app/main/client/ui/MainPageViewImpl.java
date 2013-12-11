@@ -15,20 +15,13 @@
 package my.app.main.client.ui;
 
 import my.app.main.client.entity.StudentInfo;
-import my.app.main.client.place.AddStudentPlace;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Label;
 
 /**
  * Sample implementation of {@link MainPageView}.
@@ -39,9 +32,7 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 	}
 	
 	private static final Binder binder = GWT.create(Binder.class);
-	@UiField HTMLPanel content;
-	@UiField Label output;
-	@UiField Anchor anchor;
+	@UiField Label outLable;
 
 	private Presenter listener;
 
@@ -65,14 +56,9 @@ public class MainPageViewImpl extends Composite implements MainPageView {
 	@Override
 	public void setUserInfo(StudentInfo info) {
 		if (info == null) {
-			output.setText("User not found!");
 			return;
 		}
-		output.setText("Name: " + info.getName() + " age: " + info.getAge());
-	}
-	@UiHandler("anchor")
-	void onAnchorClick(ClickEvent event) {
-		Window.alert("TEST");
-		listener.goTo(new AddStudentPlace("add_new_mark"));
+		
+		outLable.setText("Name : " + info.getName() + "| Age : " + info.getAge()  );
 	}
 }

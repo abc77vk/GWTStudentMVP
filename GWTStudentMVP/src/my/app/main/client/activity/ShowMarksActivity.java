@@ -15,8 +15,8 @@
 package my.app.main.client.activity;
 
 import my.app.main.client.ClientFactory;
-import my.app.main.client.place.AddStudentPlace;
-import my.app.main.client.ui.AddStudent;
+import my.app.main.client.place.ShowMarksPlace;
+import my.app.main.client.ui.ShowMarks;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -26,7 +26,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.
  */
-public class AddStudentActivity extends AbstractActivity implements AddStudent.Presenter {
+public class ShowMarksActivity extends AbstractActivity implements ShowMarks.Presenter {
 	/**
 	 * Used to obtain views, eventBus, placeController.
 	 * Alternatively, could be injected via GIN.
@@ -38,22 +38,26 @@ public class AddStudentActivity extends AbstractActivity implements AddStudent.P
 	 */
 	private String name;
 
-	public AddStudentActivity(AddStudentPlace place, ClientFactory clientFactory) {
+	public ShowMarksActivity(ShowMarksPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		AddStudent view = clientFactory.getAddStudent();
+		ShowMarks view = clientFactory.getShowMarks();
 		view.setName(name);
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
 
-	
+	@Override
+	public String mayStop() {
+		return "Please hold on. This activity is stopping.";
+	}
+
 	/**
-	 * @see AddStudent.Presenter#goTo(Place)
+	 * @see ShowMarks.Presenter#goTo(Place)
 	 */
 	public void goTo(Place place) {
 		clientFactory.getPlaceController().goTo(place);

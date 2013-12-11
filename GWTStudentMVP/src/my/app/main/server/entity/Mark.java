@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Id;
 
+import my.app.main.client.entity.MarkInfo;
+
 import com.googlecode.objectify.Key;
 
 public class Mark implements Serializable {
@@ -58,6 +60,10 @@ public class Mark implements Serializable {
 	@Override
 	public String toString() {
 		return "Mark [id=" + id + ", name=" + name + ", mark=" + mark + ", date=" + date + ", student=" + student + "]";
+	}
+	
+	public MarkInfo asMarkInfo() {
+		return new MarkInfo(name, String.valueOf(mark));
 	}
 
 }

@@ -14,45 +14,42 @@
  *******************************************************************************/
 package my.app.main.client.ui;
 
+import my.app.main.client.entity.StudentInfo;
+import my.app.main.client.place.AddStudentPlace;
+import my.app.main.client.place.MainPagePlace;
 import my.app.main.client.service.GetCurrentUser;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.IntegerBox;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.Label;
 
 /**
- * Sample implementation of {@link AddStudent}.
+ * Sample implementation of {@link LeftMenu}.
  */
-public class AddStudentImpl extends Composite implements AddStudent {
+public class LeftMenuImpl extends Composite implements LeftMenu {
 
-	interface Binder extends UiBinder<Widget, AddStudentImpl> {
+	interface Binder extends UiBinder<Widget, LeftMenuImpl> {
 	}
-
+	
 	private static final Binder binder = GWT.create(Binder.class);
-	@UiField
-	TextBox nameInput;
-	@UiField
-	IntegerBox markInput;
-	@UiField
-	Label output;
-	@UiField
-	Button button;
+	@UiField Button button;
+	@UiField Label nameOut;
+	@UiField Label ageOut;
+	@UiField Button button_1;
+	@UiField Button button_2;
+	@UiField Button button_3;
 
-	@SuppressWarnings("unused")
 	private Presenter listener;
 
-	public AddStudentImpl() {
+	public LeftMenuImpl() {
 		initWidget(binder.createAndBindUi(this));
 	}
 
@@ -64,37 +61,40 @@ public class AddStudentImpl extends Composite implements AddStudent {
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
 	}
-
+	
+	public void setInfo(StudentInfo info) {
+		if (info == null) {
+			nameOut.setText("User not found!");
+			ageOut.setText("");
+		} else {
+			nameOut.setText(info.getName());
+			ageOut.setText(info.getAge());
+		}
+	}
 	@UiHandler("button")
 	void onButtonClick(ClickEvent event) {
-		String name = nameInput.getText();
-		String mark = markInput.getText();
-
-		if (name.isEmpty() || mark.isEmpty()) {
-			output.setText("Please, fill all fields.");
-			return;
-		}
-
-		RegExp exp = RegExp.compile("^(100|\\d{1,2})$");
-		if (!exp.test(mark)) {
-			output.setText("Mark must be integer number in range [0..100]");
-			return;
-		}
-		
-		int markInt = Integer.parseInt(mark);
-		
-		GetCurrentUser.Util.getInstance().addMark(name,markInt, new AsyncCallback<Void>() {
+		listener.goTo(new AddStudentPlace("add_new_mark"));
+	}
+	@UiHandler("button_1")
+	void onButton_1Click(ClickEvent event) {
+	}
+	@UiHandler("button_2")
+	void onButton_2Click(ClickEvent event) {
+		listener.goTo(new MainPagePlace("main"));
+	}
+	@UiHandler("button_3")
+	void onButton_3Click(ClickEvent event) {
+		GetCurrentUser.Util.getInstance().logout(new AsyncCallback<Void>() {
 			
 			@Override
 			public void onSuccess(Void result) {
-				output.setText("Mark is added.");
+				Window.Location.replace("/LoginViewer.html");
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				Window.alert(caught.getMessage());				
 			}
 		});
-		
 	}
 }

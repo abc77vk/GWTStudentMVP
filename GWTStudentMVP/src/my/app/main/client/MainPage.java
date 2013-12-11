@@ -14,8 +14,9 @@
  *******************************************************************************/
 package my.app.main.client;
 
-import my.app.main.client.mvp.AppActivityMapper;
 import my.app.main.client.mvp.AppPlaceHistoryMapper;
+import my.app.main.client.mvp.ContentActivityMaper;
+import my.app.main.client.mvp.LeftMenuActivityMapper;
 import my.app.main.client.place.MainPagePlace;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -30,25 +31,37 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 public class MainPage implements EntryPoint {
-  
-	private SimplePanel appWidget = new SimplePanel();
+
+	private SimplePanel content = new SimplePanel();
+	private SimplePanel left = new SimplePanel();
+
 	private Place defaultPlace = new MainPagePlace("start");
-	
+
+	@SuppressWarnings("deprecation")
 	public void onModuleLoad() {
-		// Create ClientFactory using deferred binding so we can replace with 
+		// Create ClientFactory using deferred binding so we can replace with
 		// different impls in gwt.xml
 		ClientFactory clientFactory = GWT.create(ClientFactory.class);
 		EventBus eventBus = clientFactory.getEventBus();
 		PlaceController placeController = clientFactory.getPlaceController();
+
 		// Start ActivityManager for the main widget with our ActivityMapper
-		ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
-		ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
-		activityManager.setDisplay(appWidget);
+		ActivityMapper activityMapperContent = new ContentActivityMaper(clientFactory);
+		ActivityManager activityManagerContent = new ActivityManager(activityMapperContent, eventBus);
+		activityManagerContent.setDisplay(content);
+
+		// Start ActivityManager for the main widget with our ActivityMapper
+		ActivityMapper activityMapperLeftMenu = new LeftMenuActivityMapper(clientFactory);
+		ActivityManager activityManagerLeftMenu = new ActivityManager(activityMapperLeftMenu, eventBus);
+		activityManagerLeftMenu.setDisplay(left);
+		
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
-		AppPlaceHistoryMapper historyMapper = GWT .create(AppPlaceHistoryMapper.class);
+		AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
 		historyHandler.register(placeController, eventBus, defaultPlace);
-		RootPanel.get().add(appWidget);
+		RootPanel.get("content").add(content);
+		RootPanel.get("leftnav").add(left);
+
 		// Goes to place represented on URL or default place
 		historyHandler.handleCurrentHistory();
 	}
