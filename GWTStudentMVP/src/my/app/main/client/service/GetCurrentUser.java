@@ -14,8 +14,10 @@
  *******************************************************************************/
 package my.app.main.client.service;
 
+import java.util.List;
+
+import my.app.main.client.entity.MarkInfo;
 import my.app.main.client.entity.StudentInfo;
-import my.app.main.server.entity.Mark;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -26,6 +28,8 @@ public interface GetCurrentUser extends RemoteService {
 
 	StudentInfo getStudentInfo();
 	void logout();
+	
+	List<MarkInfo> getMarks();
 	
 	void addMark(String name,int age);
 	

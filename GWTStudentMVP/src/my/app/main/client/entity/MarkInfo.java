@@ -9,6 +9,12 @@ public class MarkInfo implements Serializable {
 	
 	private String name;
 	private String mark;
+	
+	
+	
+	public MarkInfo() {
+		
+	}
 	public String getName() {
 		return name;
 	}

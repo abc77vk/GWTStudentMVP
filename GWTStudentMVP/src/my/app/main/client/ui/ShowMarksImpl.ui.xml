@@ -9,6 +9,6 @@
 	</ui:style>
 
 	<g:FlowPanel styleName="{style.panel}">
-		<p1:DataGrid width="250px" height="200px" ui:field="dataGrid"/>
+		<g:ListBox visibleItemCount="5" width="100%" selectedIndex="0" ui:field="list"/>
 	</g:FlowPanel>
 </ui:UiBinder>

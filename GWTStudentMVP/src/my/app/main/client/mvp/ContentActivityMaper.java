@@ -6,8 +6,10 @@ import com.google.gwt.place.shared.Place;
 import my.app.main.client.ClientFactory;
 import my.app.main.client.activity.AddStudentActivity;
 import my.app.main.client.activity.MainPageActivity;
+import my.app.main.client.activity.ShowMarksActivity;
 import my.app.main.client.place.AddStudentPlace;
 import my.app.main.client.place.MainPagePlace;
+import my.app.main.client.place.ShowMarksPlace;
 
 public class ContentActivityMaper extends AppActivityMapper {
 
@@ -19,6 +21,7 @@ public class ContentActivityMaper extends AppActivityMapper {
 	public Activity getActivity(Place place) {
 		if (place instanceof MainPagePlace) return new MainPageActivity((MainPagePlace) place, clientFactory);
 		else if (place instanceof AddStudentPlace) return new AddStudentActivity((AddStudentPlace) place, clientFactory);
+		else if (place instanceof ShowMarksPlace) return new ShowMarksActivity((ShowMarksPlace) place, clientFactory);
 		return null;
 	}
 

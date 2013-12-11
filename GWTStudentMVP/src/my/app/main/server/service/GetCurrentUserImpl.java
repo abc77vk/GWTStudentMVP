@@ -14,8 +14,12 @@
  *******************************************************************************/
 package my.app.main.server.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import my.app.main.client.entity.MarkInfo;
 import my.app.main.client.entity.StudentInfo;
 import my.app.main.client.service.GetCurrentUser;
 import my.app.main.server.entity.Mark;
@@ -55,6 +59,22 @@ public class GetCurrentUserImpl extends RemoteServiceServlet implements GetCurre
 		mark.setStudent(new Key<Student>(Student.class, student.getId()));
 		OfyService.ofy().put(mark);
 		
+	}
+
+	@Override
+	public List<MarkInfo> getMarks() {
+		Student student = (Student) this.getThreadLocalRequest().getSession().getAttribute("user");
+		if (student == null) return null;
+		
+		List<MarkInfo> markInfos = new ArrayList<>();
+		
+		List<Mark> marks = OfyService.ofy().query(Mark.class).filter("student", student).list();
+		
+		for(Mark mark : marks) {
+			markInfos.add(mark.asMarkInfo());
+		}
+		
+		return markInfos;
 	}
 	
 	

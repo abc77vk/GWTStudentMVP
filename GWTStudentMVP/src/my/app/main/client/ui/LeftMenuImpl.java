@@ -17,6 +17,7 @@ package my.app.main.client.ui;
 import my.app.main.client.entity.StudentInfo;
 import my.app.main.client.place.AddStudentPlace;
 import my.app.main.client.place.MainPagePlace;
+import my.app.main.client.place.ShowMarksPlace;
 import my.app.main.client.service.GetCurrentUser;
 
 import com.google.gwt.core.client.GWT;
@@ -77,6 +78,7 @@ public class LeftMenuImpl extends Composite implements LeftMenu {
 	}
 	@UiHandler("button_1")
 	void onButton_1Click(ClickEvent event) {
+		listener.goTo(new ShowMarksPlace("show_mark"));
 	}
 	@UiHandler("button_2")
 	void onButton_2Click(ClickEvent event) {

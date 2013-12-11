@@ -14,6 +14,10 @@
  *******************************************************************************/
 package my.app.main.client.ui;
 
+import java.util.List;
+
+import my.app.main.client.entity.MarkInfo;
+
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -26,6 +30,8 @@ public interface ShowMarks extends IsWidget {
 	void setName(String helloName);
 
 	void setPresenter(Presenter listener);
+	
+	void addItem(List<MarkInfo> items);
 
 	public interface Presenter {
 		/**

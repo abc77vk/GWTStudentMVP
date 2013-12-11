@@ -14,13 +14,19 @@
  *******************************************************************************/
 package my.app.main.client.activity;
 
+import java.util.List;
+
 import my.app.main.client.ClientFactory;
+import my.app.main.client.entity.MarkInfo;
 import my.app.main.client.place.ShowMarksPlace;
+import my.app.main.client.service.GetCurrentUser;
 import my.app.main.client.ui.ShowMarks;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
@@ -45,16 +51,27 @@ public class ShowMarksActivity extends AbstractActivity implements ShowMarks.Pre
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		ShowMarks view = clientFactory.getShowMarks();
+		final ShowMarks view = clientFactory.getShowMarks();
 		view.setName(name);
+		
+		GetCurrentUser.Util.getInstance().getMarks(new AsyncCallback<List<MarkInfo>>() {
+			
+			@Override
+			public void onSuccess(List<MarkInfo> result) {
+				view.addItem(result);
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+		});
+		
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
 	}
 
-	@Override
-	public String mayStop() {
-		return "Please hold on. This activity is stopping.";
-	}
 
 	/**
 	 * @see ShowMarks.Presenter#goTo(Place)
